@@ -65,8 +65,8 @@ func main() {
 	//      Retourne une erreur si la chaîne n'est pas un nombre.
 	//    - break : sort de la boucle infinie quand l'entrée est valide.
 	// ---------------------------------------------------------
+	var anneeNessance string
 	for {
-		var anneeNessance string
 		fmt.Print("Enter Année de naissance : ")
 		fmt.Scan(&anneeNessance)
 
@@ -77,6 +77,83 @@ func main() {
 			fmt.Println("Une année de naissance acceptable !")
 			break // ← on quitte la boucle infinie
 		}
+	}
+
+	// =============================================================================
+	// 5. Le Switch en Go
+	// =============================================================================
+	//
+	// Le "switch" permet de remplacer une longue chaîne de if/else if/else.
+	// Contrairement à C ou Java, Go n'a PAS besoin de "break" à la fin de
+	// chaque cas : l'exécution s'arrête automatiquement après le premier cas
+	// correspondant (pas de "fall-through" par défaut).
+	//
+	// Syntaxe :
+	//   switch expression {
+	//   case valeur1:
+	//       // code si expression == valeur1
+	//   case valeur2, valeur3:
+	//       // code si expression == valeur2 OU valeur3
+	//   default:
+	//       // code si aucun cas ne correspond
+	//   }
+	//
+	// Particularités de Go :
+	//   - Les cas peuvent contenir plusieurs valeurs séparées par des virgules.
+	//   - On peut utiliser "switch" SANS expression (comme un if/else if).
+	//   - Le mot-clé "fallthrough" force l'exécution du cas suivant.
+	// =============================================================================
+
+	// ---------------------------------------------------------
+	// 5a. Switch classique sur une valeur
+	//     On évalue le jour de la semaine et on affiche un message.
+	// ---------------------------------------------------------
+	jour := "mercredi"
+
+	switch jour {
+	case "lundi":
+		fmt.Println("C'est le début de la semaine 😴")
+	case "mardi", "mercredi", "jeudi":
+		fmt.Println("On est en plein milieu de la semaine 💪")
+	case "vendredi":
+		fmt.Println("C'est bientôt le week-end ! 🎉")
+	case "samedi", "dimanche":
+		fmt.Println("C'est le week-end ! 🥳")
+	default:
+		fmt.Println("Jour inconnu 🤔")
+	}
+
+	// ---------------------------------------------------------
+	// 5b. Switch SANS expression (remplace if/else if)
+	//     Chaque "case" contient une condition booléenne.
+	//     Utile pour des comparaisons plus complexes.
+	// ---------------------------------------------------------
+	age := 25
+
+	switch {
+	case age < 13:
+		fmt.Println("Vous êtes un enfant.")
+	case age < 18:
+		fmt.Println("Vous êtes un adolescent.")
+	case age < 65:
+		fmt.Println("Vous êtes un adulte.")
+	default:
+		fmt.Println("Vous êtes un senior.")
+	}
+
+	// ---------------------------------------------------------
+	// 5c. Switch avec initialisation (comme le "if" en Go)
+	//     On peut déclarer une variable dans le switch.
+	// ---------------------------------------------------------
+	switch note := 15; {
+	case note >= 16:
+		fmt.Println("Très bien !")
+	case note >= 14:
+		fmt.Println("Bien !")
+	case note >= 10:
+		fmt.Println("Passable.")
+	default:
+		fmt.Println("Insuffisant.")
 	}
 
 }
