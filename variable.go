@@ -4,7 +4,9 @@
 // la visibilité (export), les tableaux (arrays) et les slices.
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // ================================================================
 // 1. Les Zero Values (Valeurs par défaut)
@@ -126,8 +128,10 @@ func main() {
 
 	var small [5]int = [5]int{1, 2, 3, 4, 5}
 	var big [10]int = [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	tab := [5]int{1, 2, 3, 4, 5} // écriture court de declaration de tableau
 
 	printFive(small) // ✅ Fonctionne : small est de type [5]int
+	printFive(tab)   // ✅ Fonctionne : small est de type [5]int
 	//printFive(big)   // ❌ Erreur : big est de type [10]int, incompatible avec [5]int
 	fmt.Println(big)
 
@@ -140,8 +144,8 @@ func main() {
 	// Les slices sont plus utilisés que les tableaux en pratique.
 
 	var myFriends []string = []string{"Ali", "Sara", "Ayoub"}
-	myNum := []string{"Ali", "Sara", "Ayoub"} // Syntaxe courte pour un slice
+	myNum := []string{"Ali", "Ayoub"} // Syntaxe courte pour un slice
 
-	fmt.Println(myNum)
 	fmt.Println(myFriends)
+	fmt.Println(myNum)
 }
